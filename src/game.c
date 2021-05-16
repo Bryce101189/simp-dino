@@ -1,15 +1,20 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 
 #include "simp_engine/simp.h"
 
 #include "dino.h"
 #include "game.h"
+#include "scene.h"
 #include "score.h"
 
 Simp_Window* window = NULL;
 Simp_Font* font = NULL;
 
 void Game_Start(void) {
+    srand(time(NULL));
+
     // Create Simp window
     window = Simp_CreateWindow("Simp Dino", WINDOW_WIDTH, WINDOW_HEIGHT);
 
@@ -30,12 +35,12 @@ void Game_Start(void) {
     font->color = colGray;
 
     // Initialize dino
-    if(!Dino_Init()) {
+    if(!Dino_Init() || !Scene_Init()) {
         return;
     }
 
     // Set clear color to white
-    const Simp_Color colWhite = { 0xDF, 0xDF, 0xDF, 0xFF };
+    const Simp_Color colWhite = { 0xF7, 0xF7, 0xF7, 0xFF };
     Simp_SetClearColor(window, colWhite);
 
     long targetTime = Simp_GetMillisecondsElapsed();
@@ -44,6 +49,10 @@ void Game_Start(void) {
     while(!Simp_GetWindowEventStatus(window, SIMP_WINDOWEVENT_CLOSE)) {
         Simp_ClearScreen(window);
         Simp_PollInputs();
+
+        // Update scene
+        Scene_Update();
+        Scene_Render();
 
         // Update dino
         Dino_Update();
@@ -67,6 +76,7 @@ void Game_Start(void) {
 
 void Game_End(void) {
     Dino_Destroy();
+    Scene_Destroy();
 
     if(font != NULL) {
         Simp_DestroyFont(font);
