@@ -4,18 +4,32 @@
 
 #include "dino.h"
 #include "game.h"
+#include "score.h"
 
 Simp_Window* window = NULL;
+Simp_Font* font = NULL;
 
 void Game_Start(void) {
     // Create Simp window
-    window = Simp_CreateWindow("Simp Dino", 854, 480);
+    window = Simp_CreateWindow("Simp Dino", WINDOW_WIDTH, WINDOW_HEIGHT);
 
     if(window == NULL) {
         puts(Simp_GetError());
         return;
     }
 
+    // Load font
+    font = Simp_LoadFont("resources/fonts/PressStart2P.ttf", 16);
+
+    if(font == NULL) {
+        puts(Simp_GetError());
+        return ;
+    }
+
+    const Simp_Color colGray = { 0x53, 0x53, 0x53, 0xFF };
+    font->color = colGray;
+
+    // Initialize dino
     if(!Dino_Init()) {
         return;
     }
@@ -31,8 +45,14 @@ void Game_Start(void) {
         Simp_ClearScreen(window);
         Simp_PollInputs();
 
+        // Update dino
         Dino_Update();
 
+        // Update score
+        Score_Increment();
+        Score_Update();
+
+        // Update screen
         Simp_UpdateScreen(window);
 
         // Limit framerate to 60fps
@@ -47,6 +67,10 @@ void Game_Start(void) {
 
 void Game_End(void) {
     Dino_Destroy();
+
+    if(font != NULL) {
+        Simp_DestroyFont(font);
+    }
     
     if(window != NULL) {
         Simp_DestroyWindow(window);
