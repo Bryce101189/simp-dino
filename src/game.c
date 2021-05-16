@@ -2,16 +2,21 @@
 
 #include "simp_engine/simp.h"
 
+#include "dino.h"
 #include "game.h"
 
 Simp_Window* window = NULL;
 
 void Game_Start(void) {
     // Create Simp window
-    window = Simp_CreateWindow("Simp Dino", 640, 480);
+    window = Simp_CreateWindow("Simp Dino", 854, 480);
 
     if(window == NULL) {
         puts(Simp_GetError());
+        return;
+    }
+
+    if(!Dino_Init()) {
         return;
     }
 
@@ -24,6 +29,9 @@ void Game_Start(void) {
     // Game loop
     while(!Simp_GetWindowEventStatus(window, SIMP_WINDOWEVENT_CLOSE)) {
         Simp_ClearScreen(window);
+        Simp_PollInputs();
+
+        Dino_Update();
 
         Simp_UpdateScreen(window);
 
@@ -38,6 +46,8 @@ void Game_Start(void) {
 }
 
 void Game_End(void) {
+    Dino_Destroy();
+    
     if(window != NULL) {
         Simp_DestroyWindow(window);
     }

@@ -5,6 +5,8 @@
 
 #define FRAME_DURATION (1000 / 60)
 
+#define FLOOR_POSITION (-160)
+
 extern Simp_Window* window;
 
 void Game_Start(void);
