@@ -18,15 +18,15 @@ void Score_Update(void) {
     font->color = colDarkGray;
     Simp_Sprite* hiScoreSprite = Simp_CreateSpriteFromText(font, scoreText);
 
-    hiScoreSprite->position.x = (-WINDOW_WIDTH / 2) + 8 + (hiScoreSprite->src_rect.width / 2);
-    hiScoreSprite->position.y = WINDOW_HEIGHT / 2 - 24;
+    hiScoreSprite->position.x = (-WINDOW_WIDTH / 2) + 24 + (hiScoreSprite->src_rect.width / 2);
+    hiScoreSprite->position.y = WINDOW_HEIGHT / 2 - 32;
 
     sprintf(scoreText, "CUR: %ld", score / 10);
     font->color = colGray;
     Simp_Sprite* scoreSprite = Simp_CreateSpriteFromText(font, scoreText);
 
-    scoreSprite->position.x = (-WINDOW_WIDTH / 2) + 8 + (scoreSprite->src_rect.width / 2);
-    scoreSprite->position.y = WINDOW_HEIGHT / 2 - 48;
+    scoreSprite->position.x = (-WINDOW_WIDTH / 2) + 24 + (scoreSprite->src_rect.width / 2);
+    scoreSprite->position.y = WINDOW_HEIGHT / 2 - 56;
 
     Simp_DrawSprite(window, hiScoreSprite);
     Simp_DrawSprite(window, scoreSprite);

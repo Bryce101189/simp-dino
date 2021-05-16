@@ -22,7 +22,7 @@ bool Dino_Init(void) {
         return false;
     }
 
-    dino->position.x = -250;
+    dino->position.x = -350;
     dino->position.y = FLOOR_POSITION;
 
     dino->src_rect.width = 88;
