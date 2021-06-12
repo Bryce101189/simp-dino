@@ -2,10 +2,11 @@
 #include <stdlib.h>
 #include <time.h>
 
-#include "simp_engine/simp.h"
+#include "simp_engine/src/simp.h"
 
 #include "dino.h"
 #include "game.h"
+#include "obstacles.h"
 #include "scene.h"
 #include "score.h"
 
@@ -35,7 +36,7 @@ void Game_Start(void) {
     font->color = colGray;
 
     // Initialize dino
-    if(!Dino_Init() || !Scene_Init()) {
+    if(!Dino_Init() || !Scene_Init() || !Obst_Init()) {
         return;
     }
 
@@ -53,6 +54,9 @@ void Game_Start(void) {
         // Update scene
         Scene_Update();
         Scene_Render();
+
+        // Update obstacles
+        Obst_Render();
 
         // Update dino
         Dino_Update();
@@ -75,8 +79,9 @@ void Game_Start(void) {
 }
 
 void Game_End(void) {
-    Dino_Destroy();
+    Obst_Destroy();
     Scene_Destroy();
+    Dino_Destroy();
 
     if(font != NULL) {
         Simp_DestroyFont(font);

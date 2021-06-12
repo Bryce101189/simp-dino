@@ -1,7 +1,7 @@
 #ifndef _GAME_H
 #define _GAME_H
 
-#include "simp_engine/simp.h"
+#include "simp_engine/src/simp.h"
 
 #define WINDOW_WIDTH (1280)
 #define WINDOW_HEIGHT (720)

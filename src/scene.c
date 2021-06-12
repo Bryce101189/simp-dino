@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "simp_engine/simp.h"
+#include "simp_engine/src/simp.h"
 
 #include "game.h"
 #include "scene.h"
@@ -44,8 +44,8 @@ bool Scene_Init(void) {
     memcpy(floor2, floor1, sizeof(Simp_Sprite));
 
     // Position floor
-    floor1->position.y = FLOOR_POSITION - 36;
-    floor2->position.y = FLOOR_POSITION - 36;
+    floor1->position.y = FLOOR_POSITION - 35;
+    floor2->position.y = FLOOR_POSITION - 35;
 
     floor1->position.x = (-WINDOW_WIDTH / 2) + (floor1->src_rect.width / 2);
     floor2->position.x = floor1->position.x + floor2->src_rect.width;
@@ -72,7 +72,7 @@ void Scene_Update(void) {
             break;
         }
     
-        spawnCountdown = 120 + (rand() % 240);
+        spawnCountdown = 160 + (rand() % 240);
     }
 
     for(int i = 0; i < MAX_CLOUDS; ++i) {
@@ -87,6 +87,12 @@ void Scene_Update(void) {
             }
         }
     }
+
+    for(int i = 0; i < MAX_CLOUDS; ++i) {
+        printf("Cloud: %p\n", clouds[i]);
+    }
+
+    printf("\n");
 
     // Floor
     floor1->position.x -= floorSpeed;

@@ -1,7 +1,7 @@
 #ifndef _DINO_H
 #define _DINO_H
 
-#include "simp_engine/simp.h"
+#include "simp_engine/src/simp.h"
 
 #define ANIM_CYCLE_RATE (6)
 

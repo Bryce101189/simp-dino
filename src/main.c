@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-#include "simp_engine/simp.h"
+#include "simp_engine/src/simp.h"
 
 #include "game.h"
 
