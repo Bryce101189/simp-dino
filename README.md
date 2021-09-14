@@ -10,11 +10,15 @@ Simp Dino is written in C and can be compiled with the C compiler of your choice
 
 Running this command should work on most systems:
 
-`$ cc src/*.c src/simp_engine/src/simp.c -Ofast -lSDL2{,_ttf,_image} -o SimpDino`{:.bash}
+```bash
+$ cc src/*.c src/simp_engine/src/simp.c -Ofast -lSDL2{,_ttf,_image} -o SimpDino
+```
 
 The resulting binary can then be run either by double-clicking its icon in a file manager, or by running the following command:
 
-`$ ./SimpDino`{:.bash}
+```bash
+$ ./SimpDino
+```
 
 ## License
 
