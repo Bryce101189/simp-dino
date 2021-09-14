@@ -38,7 +38,7 @@ void Dino_Update(void) {
         speed = 0;
         ++walkCycle;
         
-        if((Simp_GetKey(SIMP_KEY_UP) || Simp_GetKey(SIMP_KEY_SPACE)) && !Simp_GetKey(SIMP_KEY_DOWN)) {
+        if((Simp_GetKey(SIMP_KEY_UP) || Simp_GetKey(SIMP_KEY_SPACE)) && !crouching) {
             speed = JUMP_FORCE;
         }
     } else {

@@ -88,12 +88,6 @@ void Scene_Update(void) {
         }
     }
 
-    for(int i = 0; i < MAX_CLOUDS; ++i) {
-        printf("Cloud: %p\n", clouds[i]);
-    }
-
-    printf("\n");
-
     // Floor
     floor1->position.x -= floorSpeed;
     floor2->position.x -= floorSpeed;
